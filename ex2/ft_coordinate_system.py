@@ -2,10 +2,12 @@ import math
 
 
 def create_3D_position(x, y, z):
+    """Creates a 3D position tuple from x, y, z coordinates."""
     return x, y, z
 
 
 def calculate_distance(pos1, pos2):
+    """Calculates Euclidean distance between two 3D positions."""
     (x1, y1, z1) = pos1
     (x2, y2, z2) = pos2
     dist = float(math.sqrt((x2-x1)**2 + (y2-y1)**2 + (z2-z1)**2))
@@ -13,11 +15,12 @@ def calculate_distance(pos1, pos2):
 
 
 def parsing_coordinate(coord_str):
+    """Parses a coordinate string 'x,y,z' into a tuple."""
     try:
         parcing = tuple(coord_str.split(","))
         if len(parcing) != 3:
             raise ValueError("Coordinates must have exactly 3 values")
-        (x, y, z) = (int(i) for i in parcing)
+        x, y, z = [int(i) for i in parcing]
     except ValueError as e:
         print(f'Parsing invalid coordinates: "{coord_str}"')
         print(f"Error parsing coordinates: {e}")
@@ -29,6 +32,7 @@ def parsing_coordinate(coord_str):
 
 
 def main():
+    """Main function demonstrating 3D coordinate system."""
     print("=== Game Coordinate System ===\n")
 
     pos0 = create_3D_position(0, 0, 0)

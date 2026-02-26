@@ -68,6 +68,7 @@ data = {
 
 
 def player_inventory(player_name, player_data, catalog):
+    """Displays the inventory of a player with item details."""
     print(f"=== {player_name.capitalize()}'s Inventory ===")
     categories = {}
     for item, qty in player_data["items"].items():
@@ -91,6 +92,7 @@ def player_inventory(player_name, player_data, catalog):
 
 
 def transaction(giver, receiver, item, qty, players, catalog):
+    """Transfers items between two players and updates values."""
     giver_items = players[giver]["items"]
     receiver_items = players[receiver]["items"]
 
@@ -111,6 +113,7 @@ def transaction(giver, receiver, item, qty, players, catalog):
 
 
 def get_most_valuable(players):
+    """Returns the player with the highest total inventory value."""
     if not players:
         return None, 0
     best_player = None
@@ -123,6 +126,7 @@ def get_most_valuable(players):
 
 
 def get_most_items(players):
+    """Returns the player with the most items in inventory."""
     if not players:
         return None, 0
     best_player = None
@@ -135,6 +139,7 @@ def get_most_items(players):
 
 
 def get_rare_items(players, catalog):
+    """Returns list of rare and legendary items owned by players."""
     rare = []
     for item, info in catalog.items():
         if info.get("rarity") in ("rare", "legendary"):
@@ -147,6 +152,7 @@ def get_rare_items(players, catalog):
 
 
 def main():
+    """Main function demonstrating the inventory system."""
     players = data["players"]
     catalog = data["catalog"]
     player_name = 'alice'

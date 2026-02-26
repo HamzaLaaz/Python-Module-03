@@ -54,8 +54,10 @@ data = {
 
 
 def main():
+    """Main function demonstrating achievement tracking using sets."""
     print("=== Achievement Tracker System ===\n")
     items = ["alice", "bob", "charlie", "diana", "eve", "frank"]
+
     for name in items:
         print(f"Player {name} achievements: {set(data[name])}")
 
@@ -69,9 +71,14 @@ def main():
     for name in items[1:]:
         common_all = common_all.intersection(set(data[name]))
     print(f"Common to all players: {common_all}")
-    rare_achievements = set(data[items[0]])
-    for name in items[1:]:
-        rare_achievements = rare_achievements.difference(set(data[name]))
+    rare_achievements = set()
+    for achievement in all_achievements:
+        count = 0
+        for name in items:
+            if achievement in set(data[name]):
+                count += 1
+        if count == 1:
+            rare_achievements.add(achievement)
     print(f"Rare achievements (1 player): {rare_achievements}\n")
     alice = set(data["alice"])
     bob = set(data["bob"])

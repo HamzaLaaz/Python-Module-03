@@ -353,11 +353,13 @@ data = [
 
 
 def event_generator():
+    """Generator that yields game events one at a time."""
     for event in data:
         yield event
 
 
 def stream_analytics(list_stream):
+    """Displays stream processing analytics results."""
     print("=== Stream Analytics ===")
     print(f"Total events processed: {list_stream[0]}")
     print(f"High-level players (20+): {list_stream[1]}")
@@ -367,6 +369,7 @@ def stream_analytics(list_stream):
 
 
 def processing_game_events():
+    """Processes all game events using a generator stream."""
     print(f"Processing {len(data)} game events...\n")
     total_events_proc = 0
     hight_level_ply = 0
@@ -375,10 +378,10 @@ def processing_game_events():
     level_up = 0
     for event in event_generator():
         total_events_proc += 1
-        if total_events_proc <= 3:
+        if total_events_proc <= 10:
             print(f"Event {total_events_proc}: Player {event['player']} "
                   f"(level {event['data']['level']}) {event['event_type']}")
-        if total_events_proc == 3:
+        if total_events_proc == 10:
             print("...\n")
         if event['data']['level'] > 20:
             hight_level_ply += 1
@@ -394,6 +397,7 @@ def processing_game_events():
 
 
 def fibonacci():
+    """Generator that yields fibonacci numbers infinitely."""
     a, b = 0, 1
     while True:
         yield a
@@ -401,6 +405,7 @@ def fibonacci():
 
 
 def is_prime(nb):
+    """Returns True if nb is a prime number."""
     if nb < 2:
         return False
     for i in range(2, nb):
@@ -410,6 +415,7 @@ def is_prime(nb):
 
 
 def is_prime_generator():
+    """Generator that yields prime numbers infinitely."""
     nb = 2
     while True:
         if is_prime(nb):
@@ -418,21 +424,23 @@ def is_prime_generator():
 
 
 def generator_demonstration():
+    """Demonstrates fibonacci and prime number generators."""
     fib = fibonacci()
     fib_list = []
-    for i in range(10):
+    for _ in range(10):
         fib_list.append(next(fib))
     fib_nb = ', '.join(str(n) for n in fib_list)
-    print(f"Fibonacci (first 10): {fib_nb}")
+    print(f"Fibonacci sequence (first 10): {fib_nb}")
     prime = is_prime_generator()
     prime_list = []
-    for i in range(5):
+    for _ in range(5):
         prime_list.append(next(prime))
     prime_nb = ', '.join(str(n) for n in prime_list)
     print(f"Prime numbers (first 5): {prime_nb}")
 
 
 def main():
+    """Main function demonstrating stream processing."""
     print("=== Game Data Stream Processor ===\n")
     processing_game_events()
     print("Memory usage: Constant (streaming)")

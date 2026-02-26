@@ -274,6 +274,7 @@ data = {
 
 
 def list_comprehension(players, sessions):
+    """Demonstrates list comprehensions for filtering and transforming data."""
     print("\n=== List Comprehension Examples ===")
     high_scorers = [
         player for player, score in players.items()
@@ -293,6 +294,7 @@ def list_comprehension(players, sessions):
 
 
 def dict_comprehension(players):
+    """Demonstrates dict comprehensions for creating mappings."""
     print("\n=== Dict Comprehension Examples ===")
     player_score = {
         player: score["total_score"] for player, score in players.items()
@@ -313,10 +315,11 @@ def dict_comprehension(players):
         player: count['achievements_count']
         for player, count in players.items()
     }
-    print(f"Active regions: {achievements_count}")
+    print(f"Achievement counts: {achievements_count}")
 
 
 def set_comprehension(players, game_modes, achievements):
+    """Demonstrates set comprehensions for finding unique values."""
     print("\n=== Set Comprehension Examples ===")
     unique_players = {
         player for player in players
@@ -333,6 +336,7 @@ def set_comprehension(players, game_modes, achievements):
 
 
 def combined_comprehensions(players, achievements):
+    """Combines all comprehension types for final analytics."""
     print("\n=== Combined Analysis ===")
     total_players = len({player for player in players})
     print(f"Total player: {total_players}")
@@ -354,14 +358,15 @@ def combined_comprehensions(players, achievements):
 
 
 def main():
+    """Main function demonstrating the analytics dashboard."""
     players = data['players']
-    sesssions = data['sessions']
+    sessions = data['sessions']
     game_modes = data['game_modes']
     achievements = data['achievements']
 
     print("=== Game Analytics Dashboard ===")
 
-    list_comprehension(players, sesssions)
+    list_comprehension(players, sessions)
 
     dict_comprehension(players)
 
